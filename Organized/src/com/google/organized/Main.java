@@ -3,7 +3,8 @@ package com.google.organized;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("We got organized");
+        byte a = 5;
+        System.out.println(a);
     }
 
 }
