@@ -14,10 +14,17 @@ public class Main {
             result = value1 - value2;
         else if (opCode == 'm')
             result = value1 * value2;
-        else if (opCode == 'd')
-            result = value1 / value2;
-        else
-            result = 0.0d;
+        else if (opCode == 'd') {
+            if (value2 != 0)
+                result = value1 / value2;
+            /* {if (value2 == 0)
+                System.out.println("Zero Division Error");
+            else
+                System.out.println(result);}  my idea */
+        }
+        else {
+            System.out.println("Invalid OPCode: " + opCode);
+            result = 0.0d; }
 
         System.out.println(result);
     }
