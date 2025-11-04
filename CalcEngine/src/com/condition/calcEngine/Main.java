@@ -35,6 +35,7 @@ public class Main {
                     break;
             }
         }
-        System.out.println(result);
+        for ( double results : result)
+            System.out.println(results);
     }
 }
