@@ -2,7 +2,7 @@ package com.method;
 
 public class Method {
     public static void output() {
-        System.out.println("Before confir");
+        System.out.println("Before confirm");
         confirm();
         System.out.println("After confirm");
     }
