@@ -9,33 +9,35 @@ public class Main {
         double [] result = new double[opCode.length];
 
         for (int counter = 0; counter < opCode.length; counter++) {
-            switch (opCode[counter]) {
-                case 'a':
-                    result[counter] = leftVals[counter] + rightVals[counter]; /* once we do the calculation, we want to
-                                                                                 place the result into our results array at that
-                                                                                 same index. "result[counter]" */
-                    break;
-
-                case 's':
-                    result[counter] = leftVals[counter] - rightVals[counter];
-                    break;
-                case 'm':
-                    result[counter] = leftVals[counter] * rightVals[counter];
-                    break;
-                case 'd':
-                    result[counter] = rightVals[counter] != 0.0d ? leftVals[counter] / rightVals[counter] : 0.0d;
-
-                    /* if (rightVals[counter] != 0) {
-                        result = leftVals[counter] / rightVals[counter];
-                        break; } also works */
-                    break;
-                default:
-                    System.out.println("Invalid OPCode: " + opCode[counter]);
-                    result[counter] = 0.0d;
-                    break;
-            }
+            result[counter] = execute(opCode[counter], leftVals[counter], rightVals[counter]);
+            System.out.println(result);
         }
         for ( double results : result)
             System.out.println(results);
+    }
+    static double execute(char opCode, double leftVal, double rightVal) {
+        double result;
+        switch (opCode) {
+            case 'a':
+                result = leftVal + rightVal; /* once we do the calculation, we want to
+                                                                                 place the result into our results array at that
+                                                                                 same index. "result[counter]" */
+                break;
+
+            case 's':
+                result = leftVal - rightVal;
+                break;
+            case 'm':
+                result = leftVal * rightVal;
+                break;
+            case 'd':
+                result = rightVal != 0.0d ? leftVal / rightVal : 0.0d;
+                break;
+            default:
+                System.out.println("Invalid OPCode: " + opCode);
+                result = 0.0d;
+                break;
+        }
+    return result;
     }
 }
