@@ -8,22 +8,34 @@ public class Main {
         char [] opCode = {'d', 'a', 's', 'm'};
         double [] result = new double[opCode.length];
 
-        for (int counter = 0; counter < opCode.length; counter++) {
-            result[counter] = execute(opCode[counter], leftVals[counter], rightVals[counter]);
-            System.out.println(result);
+        if(args.length == 0 ) {
+            for (int counter = 0; counter < opCode.length; counter++) {
+                result[counter] = execute(opCode[counter], leftVals[counter], rightVals[counter]);
+                System.out.println(result);
+            }
+            for ( double currentResults : result)
+                System.out.println(currentResults);
         }
-        for ( double results : result)
-            System.out.println(results);
+        else if (args.length == 3) {
+            handleCommandLine(args); }
+        else
+            System.out.println("Pls provide an operation code and two numeric numbers");
     }
+
+    private static void handleCommandLine(String[] args) {
+        char opCode = args[0].charAt(0);
+        double leftVal = Double.parseDouble(args[1]);
+        double rightVal = Double.parseDouble(args[2]);
+        double result = execute(opCode, leftVal, rightVal);
+        System.out.println(result);
+    }
+
     static double execute(char opCode, double leftVal, double rightVal) {
         double result;
         switch (opCode) {
             case 'a':
-                result = leftVal + rightVal; /* once we do the calculation, we want to
-                                                                                 place the result into our results array at that
-                                                                                 same index. "result[counter]" */
+                result = leftVal + rightVal;
                 break;
-
             case 's':
                 result = leftVal - rightVal;
                 break;
