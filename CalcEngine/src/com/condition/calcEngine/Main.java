@@ -9,10 +9,8 @@ public class Main {
         double [] result = new double[opCode.length];
 
         if(args.length == 0 ) {
-            for (int counter = 0; counter < opCode.length; counter++) {
+            for (int counter = 0; counter < opCode.length; counter++)
                 result[counter] = execute(opCode[counter], leftVals[counter], rightVals[counter]);
-                System.out.println(result);
-            }
             for ( double currentResults : result)
                 System.out.println(currentResults);
         }
