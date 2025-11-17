@@ -17,7 +17,7 @@ public class Main {
         else if (args.length == 3) {
             handleCommandLine(args); }
         else
-            System.out.println("Pls provide an operation code and two numeric numbers");
+            System.out.println("Pls provide an operation code and two numeric numbers ");
     }
 
     private static void handleCommandLine(String[] args) {
