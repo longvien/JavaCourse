@@ -48,6 +48,24 @@ public class Main {
                 result = 0.0d;
                 break;
         }
-    return result;
+        return result;
+    }
+
+    static char opCodeFromString(String operationName) {
+        char opCode = operationName.charAt(0);
+        return opCode;
+    }
+
+    double valueFromWord(String word) {
+        String [] numberWords = { "zero", "one", "two", "three", "four",
+                "five", "six", "seven", "eight", "nine", "ten" };
+        double value = 0;
+        for (int index = 0; index < numberWords.length; index++) {
+            if (word.equals(numberWords[index])) {
+                value = index;
+                break;
+            }
+        }
+        return value;
     }
 }
