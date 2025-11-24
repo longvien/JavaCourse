@@ -1,5 +1,7 @@
 package com.condition.calcEngine;
 
+import java.util.Scanner;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -18,6 +20,12 @@ public class Main {
             handleCommandLine(args); }
         else
             System.out.println("Pls provide an operation code and two numeric numbers ");
+    }
+    static void executeInteractively() {
+        System.out.println("Enter an operation and two numbers");
+        Scanner scanner = new Scanner(System.in);
+        String userInput = scanner.nextLine();
+        userInput.split("");
     }
 
     private static void handleCommandLine(String[] args) {
@@ -56,7 +64,7 @@ public class Main {
         return opCode;
     }
 
-    double valueFromWord(String word) {
+    static double valueFromWord(String word) {
         String [] numberWords = { "zero", "one", "two", "three", "four",
                 "five", "six", "seven", "eight", "nine", "ten" };
         double value = 0;
