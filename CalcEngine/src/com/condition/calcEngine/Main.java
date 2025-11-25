@@ -3,12 +3,13 @@ package com.condition.calcEngine;
 import java.util.Scanner;
 
 public class Main {
-
     public static void main(String[] args) {
 	    double [] leftVals = { 100.0d, 25.0d, 225.0d, 11.0d }; // Values that we're going to use on the left side of the equation
         double [] rightVals = { 50.0d, 92.0d, 17.0d, 3.0d }; // Same like left, this time right.
         char [] opCode = {'d', 'a', 's', 'm'};
         double [] result = new double[opCode.length];
+
+        executeInteractively();
 
         if(args.length == 0 ) {
             for (int counter = 0; counter < opCode.length; counter++)
@@ -16,8 +17,12 @@ public class Main {
             for ( double currentResults : result)
                 System.out.println(currentResults);
         }
+        else if (args.length == 1 && args[0].equals("interactive")) {
+            executeInteractively();
+        }
         else if (args.length == 3) {
-            handleCommandLine(args); }
+            handleCommandLine(args);
+        }
         else
             System.out.println("Pls provide an operation code and two numeric numbers ");
     }
@@ -25,7 +30,16 @@ public class Main {
         System.out.println("Enter an operation and two numbers");
         Scanner scanner = new Scanner(System.in);
         String userInput = scanner.nextLine();
-        userInput.split("");
+        String [] parts = userInput.split(" ");
+        performOperation(parts);
+    }
+
+    private static void performOperation(String[] parts) {
+        char opCode = opCodeFromString(parts[0]);
+        double leftVal = valueFromWord(parts[1]);
+        double rightVal = valueFromWord(parts[2]);
+        double result = execute(opCode, leftVal, rightVal);
+        System.out.println(result);
     }
 
     private static void handleCommandLine(String[] args) {
