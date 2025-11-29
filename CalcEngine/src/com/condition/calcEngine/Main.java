@@ -1,5 +1,4 @@
 package com.condition.calcEngine;
-
 import java.util.Scanner;
 
 public class Main {
@@ -27,7 +26,7 @@ public class Main {
             System.out.println("Pls provide an operation code and two numeric numbers ");
     }
     static void executeInteractively() {
-        System.out.println("Enter an operation and two numbers");
+        System.out.println("Enter an operation and two numbers\n");
         Scanner scanner = new Scanner(System.in);
         String userInput = scanner.nextLine();
         String [] parts = userInput.split(" ");
