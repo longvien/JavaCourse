@@ -1,10 +1,17 @@
 package com.programm.test;
 
+import java.util.Scanner;
 public class array {
-    static float[] main(){
-        float [] arrays = new float[3];
-        arrays[0] = 2.0f;
-        arrays[1] = 3.0f;
-        return arrays;
+   static void main(){
+       Scanner sc = new Scanner(System.in);
+       String a = sc.nextLine();
+       String [] abs = a.split("");
+       System.out.println(abs);
+   }
+
+
+       for (i : ) {
+
+       }
     }
 }

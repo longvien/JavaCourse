@@ -6,6 +6,11 @@ public class MathEquation {
     char opCode;
     double result;
 
+    MathEquation() {
+        leftVal = 25.0;
+        rightVal = 30.0;
+        opCode = 'a';
+    }
     void execute() {
         switch (opCode) {
             case 'a':
