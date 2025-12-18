@@ -7,9 +7,7 @@ public class Main {
         double [] rightVals = { 50.0d, 92.0d, 17.0d, 3.0d }; // Same like left, this time right.
         char [] opCode = {'d', 'a', 's', 'm'};
         double [] result = new double[opCode.length];
-
         executeInteractively();
-
         if(args.length == 0 ) {
             for (int counter = 0; counter < opCode.length; counter++)
                 result[counter] = execute(opCode[counter], leftVals[counter], rightVals[counter]);
