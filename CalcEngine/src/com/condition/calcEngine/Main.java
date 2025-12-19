@@ -8,6 +8,7 @@ public class Main {
         char [] opCode = {'d', 'a', 's', 'm'};
         double [] result = new double[opCode.length];
         executeInteractively();
+
         if(args.length == 0 ) {
             for (int counter = 0; counter < opCode.length; counter++)
                 result[counter] = execute(opCode[counter], leftVals[counter], rightVals[counter]);
