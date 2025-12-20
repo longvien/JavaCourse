@@ -9,10 +9,6 @@ class Flight {
         seats = 150;
     }
     void add1passengers() {
-        do {
             passengers += 1;
-            System.out.println(passengers);
-        }
-        while (passengers < seats);
     }
 }
