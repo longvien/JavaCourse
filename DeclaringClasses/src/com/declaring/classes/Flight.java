@@ -2,13 +2,19 @@ package com.declaring.classes;
 
 class Flight {
     int passengers;
-    int seats;
+     int seats;
 
-    Flight() {
-        passengers = 0;
+    public Flight() {
+        passengers = 149;
         seats = 150;
     }
-    void add1passengers() {
+    public void add1passengers() {
+        if (passengers < seats)
             passengers += 1;
+        else
+            handleTooMany();
+    }
+    private void handleTooMany() {
+        System.out.println("Too many");
     }
 }
