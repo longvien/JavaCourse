@@ -2,18 +2,10 @@ package com.condition.calcEngine;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
-	    double [] leftVals = { 100.0d, 25.0d, 225.0d, 11.0d }; // Values that we're going to use on the left side of the equation
-        double [] rightVals = { 50.0d, 92.0d, 17.0d, 3.0d }; // Same like left, this time right.
-        char [] opCode = {'d', 'a', 's', 'm'};
-        double [] result = new double[opCode.length];
-        executeInteractively();
 
-        if(args.length == 0 ) {
-            for (int counter = 0; counter < opCode.length; counter++)
-                result[counter] = execute(opCode[counter], leftVals[counter], rightVals[counter]);
-            for ( double currentResults : result)
-                System.out.println(currentResults);
+    public static void main(String[] args) {
+        if (args.length == 0 ) {
+           performCalculation();
         }
         else if (args.length == 1 && args[0].equals("interactive")) {
             executeInteractively();
@@ -24,6 +16,29 @@ public class Main {
         else
             System.out.println("Pls provide an operation code and two numeric numbers ");
     }
+
+    static void performCalculation() {
+        MathEquation [] equations = new MathEquation[4]; // Math Equation Array of size 4, 4 references of type MathEquation instead of 4 instances
+        equations[0] = create(100.0d, 50.0d, 'd');
+        equations[1] = create(25.0d, 92.0d, 'a');
+        equations[2] = create(225.0d, 17.0d, 's');
+        equations[3] = create(11.0d, 3.0d, 'm');
+
+        for (MathEquation equation : equations) {
+            equation.execute();
+            System.out.println("result of " + equation.leftVal + " " + symbolFromOpCode(equation.opCode) + " " + equation.rightVal + " is " + equation.result);
+        }
+
+    }
+
+    private static MathEquation create(double leftVal, double rightVal, char opCode) {
+        MathEquation equation = new MathEquation();
+        equation.leftVal = leftVal;
+        equation.rightVal = rightVal;
+        equation.opCode = opCode;
+        return equation;
+    }
+
     static void executeInteractively() {
         System.out.println("Enter an operation and two numbers\n");
         Scanner scanner = new Scanner(System.in);
