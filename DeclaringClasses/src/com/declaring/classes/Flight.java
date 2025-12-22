@@ -2,7 +2,7 @@ package com.declaring.classes;
 
 class Flight {
     int passengers;
-     int seats;
+    int seats;
 
     public Flight() {
         passengers = 149;
