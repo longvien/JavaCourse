@@ -1,16 +1,28 @@
 package com.declaring.classes;
 
 class Flight {
-    int passengers;
-    int seats;
+    private int passengers;
+    private final int seats = 150;
+    private static int allPassengers;
 
     public Flight() {
-        passengers = 149;
-        seats = 150;
+/*      passengers = 0; not necessary because it is set default to 0!
+        seats = 150; */
     }
-    public void add1passengers() {
-        if (passengers < seats)
+
+    public static int getAllPassengers() {
+        return allPassengers;
+    }
+
+    public static int resetAllPassengers() {
+        allPassengers = 0;
+        return allPassengers;
+    }
+
+    public void add1Passengers() {
+        if (passengers < seats) {
             passengers += 1;
+            allPassengers += 1; }
         else
             handleTooMany();
     }

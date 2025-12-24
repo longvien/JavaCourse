@@ -5,7 +5,7 @@ public class Main {
 
     public static void main(String[] args) {
         if (args.length == 0 ) {
-           performCalculation();
+            performCalculation();
         }
         else if (args.length == 1 && args[0].equals("interactive")) {
             executeInteractively();
@@ -15,28 +15,22 @@ public class Main {
         }
         else
             System.out.println("Pls provide an operation code and two numeric numbers ");
+
     }
 
     static void performCalculation() {
         MathEquation [] equations = new MathEquation[4]; // Math Equation Array of size 4, 4 references of type MathEquation instead of 4 instances
-        equations[0] = create(100.0d, 50.0d, 'd');
-        equations[1] = create(25.0d, 92.0d, 'a');
-        equations[2] = create(225.0d, 17.0d, 's');
-        equations[3] = create(11.0d, 3.0d, 'm');
+        equations[0] = new MathEquation('d', 100.0, 50);
+        equations[1] = new MathEquation('a', 25.0d, 92.0d);
+        equations[2] = new MathEquation('s', 225.0d, 17.0d);
+        equations[3] = new MathEquation('m', 11.0d, 3.0d);
 
         for (MathEquation equation : equations) {
             equation.execute();
             System.out.println("result of " + equation.leftVal + " " + symbolFromOpCode(equation.opCode) + " " + equation.rightVal + " is " + equation.result);
         }
 
-    }
-
-    private static MathEquation create(double leftVal, double rightVal, char opCode) {
-        MathEquation equation = new MathEquation();
-        equation.leftVal = leftVal;
-        equation.rightVal = rightVal;
-        equation.opCode = opCode;
-        return equation;
+        System.out.println("Average result = " + MathEquation.getAverageResult());
     }
 
     static void executeInteractively() {

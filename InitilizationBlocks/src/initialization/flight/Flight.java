@@ -7,4 +7,22 @@ public class Flight {
     private char flightClass;
     private boolean [] isSeatAvailable = new boolean[seats];
 
+    public Flight() {
+        for (int i = 0; i < seats; i++)
+            isSeatAvailable[i] = true;
+    }
+
+    public Flight(int flightNumber) {
+        this();
+        this.flightNumber = flightNumber;
+    }
+
+    public Flight(char flightClass) {
+        this();
+        this.flightClass = flightClass;
+    }
+
+
+
+
 }

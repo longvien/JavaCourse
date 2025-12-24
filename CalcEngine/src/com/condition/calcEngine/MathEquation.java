@@ -5,12 +5,29 @@ public class MathEquation {
     double rightVal;
     char opCode;
     double result;
+    private static int numberOfCalculations;
+    private static double sumOfResults;
 
-    MathEquation() {
-        leftVal = 25.0;
-        rightVal = 30.0;
-        opCode = 'a';
+
+    public MathEquation(char opCode) {
+        this.opCode = opCode;
     }
+
+    public MathEquation(char opCode, double leftVal, double rightVal) {
+        this(opCode);
+        this.leftVal = leftVal;
+        this.rightVal = rightVal;
+    }
+    void setLeftVal(double leftVal) {
+        this.leftVal = leftVal;
+    }
+    void setRightVal(double rightVal) {
+        this.rightVal = rightVal;
+    }
+    void setOpCode(char opCode) {
+        this.opCode = opCode;
+    }
+
     void execute() {
         switch (opCode) {
             case 'a':
@@ -30,5 +47,12 @@ public class MathEquation {
                 result = 0.0d;
                 break;
         }
+        numberOfCalculations++;
+        sumOfResults += result;
+    }
+
+    public static double getAverageResult() {
+        return sumOfResults / numberOfCalculations;
     }
 }
+
