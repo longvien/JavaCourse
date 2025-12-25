@@ -7,22 +7,25 @@ public class Flight {
     private char flightClass;
     private boolean [] isSeatAvailable = new boolean[seats];
 
-    public Flight() {
-        for (int i = 0; i < seats; i++)
-            isSeatAvailable[i] = true;
-    }
+    { for (int i = 0; i < seats; i++)
+            isSeatAvailable[i] = true; }
 
     public Flight(int flightNumber) {
-        this();
         this.flightNumber = flightNumber;
     }
-
     public Flight(char flightClass) {
-        this();
         this.flightClass = flightClass;
     }
-
-
-
-
+    protected int getFlightNumber(){
+        return this.flightNumber;
+    }
+    protected int setFlightNumber(int newNum){
+        this.flightNumber = newNum;
+        return this.flightNumber;
+    }
+    static void swapFlight(Flight i, Flight j) {
+        int k = i.getFlightNumber();
+        i.setFlightNumber(j.getFlightNumber());
+        j.setFlightNumber(k);
+    }
 }
