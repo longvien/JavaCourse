@@ -19,5 +19,10 @@ public class Passengers {
         this.perBagFee = perBagsFee;
     }
 
+    protected int getCheckedBags() {
+        return this.checkedBags;
+    }
+
+
 
 }

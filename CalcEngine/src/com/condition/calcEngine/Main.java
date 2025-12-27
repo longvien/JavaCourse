@@ -4,7 +4,8 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        if (args.length == 0 ) {
+        performCalculation();
+/*        if (args.length == 0 ) {
             performCalculation();
         }
         else if (args.length == 1 && args[0].equals("interactive")) {
@@ -15,7 +16,7 @@ public class Main {
         }
         else
             System.out.println("Pls provide an operation code and two numeric numbers ");
-
+    */
     }
 
     static void performCalculation() {
@@ -29,8 +30,22 @@ public class Main {
             equation.execute();
             System.out.println("result of " + equation.leftVal + " " + symbolFromOpCode(equation.opCode) + " " + equation.rightVal + " is " + equation.result);
         }
-
         System.out.println("Average result = " + MathEquation.getAverageResult());
+
+        System.out.println();
+        System.out.println("Start using execute overloads");
+        System.out.println();
+
+        MathEquation equationOverload = new MathEquation('d');
+        double leftDouble = 9.0d;
+        double rightDouble = 4.0d;
+        equationOverload.execute(leftDouble, rightDouble);
+        System.out.println("Overload result with double: " + equationOverload.getResult());
+
+        int leftInt = 9;
+        int rightInt = 4;
+        equationOverload.execute(leftInt, rightInt); // Works, because Java was able to automatically convert our ints to doubles. (Widening Conversions.)
+        System.out.println("Overload result with int: " + equationOverload.getResult());
     }
 
     static void executeInteractively() {
