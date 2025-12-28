@@ -1,10 +1,12 @@
 package com.condition.calcEngine;
 
+// import static com.condition.calcEngine.Main.symbolFromOpCode;
+
 public class MathEquation {
     double leftVal;
     double rightVal;
     char opCode;
-    double result;
+    private double result;
     private static int numberOfCalculations;
     private static double sumOfResults;
 
@@ -17,6 +19,32 @@ public class MathEquation {
         this(opCode);
         this.leftVal = leftVal;
         this.rightVal = rightVal;
+    }
+
+    public char symbolFromOpCode(){
+        char [] opCodes = {'a', 's', 'm', 'd'};
+        char [] symbols = {'+', '-', '*', '/'};
+        char symbol = ' ';
+        for (int index = 0; index < opCodes.length; index++) {
+            if (opCode == opCodes[index]) {
+                symbol = symbols[index];
+                break;
+            }
+        }
+        return symbol;
+    }
+
+    public String toString(){
+        char symbol = symbolFromOpCode();
+        StringBuilder builder = new StringBuilder(20);
+        builder.append(leftVal);
+        builder.append(" ");
+        builder.append(symbol);
+        builder.append(" ");
+        builder.append(rightVal);
+        builder.append(" = ");
+        builder.append(result);
+        return builder.toString();
     }
     public void setLeftVal(double leftVal) {this.leftVal = leftVal;}
     double getLeftVal(){return this.leftVal;}
@@ -69,3 +97,9 @@ public class MathEquation {
     }
 }
 
+/* My Code
+    public String toString() {
+        return leftVal + " " + symbolFromOpCode(opCode) + " " + rightVal + " = " + result;
+    } */
+
+//author: Long Vien

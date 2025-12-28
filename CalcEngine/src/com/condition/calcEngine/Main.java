@@ -4,8 +4,7 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        performCalculation();
-/*        if (args.length == 0 ) {
+        if (args.length == 0 ) {
             performCalculation();
         }
         else if (args.length == 1 && args[0].equals("interactive")) {
@@ -16,7 +15,6 @@ public class Main {
         }
         else
             System.out.println("Pls provide an operation code and two numeric numbers ");
-    */
     }
 
     static void performCalculation() {
@@ -28,10 +26,13 @@ public class Main {
 
         for (MathEquation equation : equations) {
             equation.execute();
-            System.out.println("result of " + equation.leftVal + " " + symbolFromOpCode(equation.opCode) + " " + equation.rightVal + " is " + equation.result);
+            System.out.println(equation); // println will call to String();
         }
         System.out.println("Average result = " + MathEquation.getAverageResult());
+        useOverloads();
+    }
 
+    static void useOverloads() {
         System.out.println();
         System.out.println("Start using execute overloads");
         System.out.println();
@@ -49,7 +50,7 @@ public class Main {
     }
 
     static void executeInteractively() {
-        System.out.println("Enter an operation and two numbers\n");
+        System.out.println("Enter an operation and two numbers");
         Scanner scanner = new Scanner(System.in);
         String userInput = scanner.nextLine();
         String [] parts = userInput.split(" ");
@@ -60,8 +61,9 @@ public class Main {
         char opCode = opCodeFromString(parts[0]);
         double leftVal = valueFromWord(parts[1]);
         double rightVal = valueFromWord(parts[2]);
-        double result = execute(opCode, leftVal, rightVal);
-        displayResult(opCode, leftVal, rightVal, result);
+        MathEquation equation = new MathEquation(opCode, leftVal, rightVal);
+        equation.execute();
+        System.out.println(equation);
     }
 
     private static void displayResult(char opCode, double leftVal, double rightVal, double result) {
@@ -90,6 +92,7 @@ public class Main {
         }
         return symbol;
     }
+
     private static void handleCommandLine(String[] args) {
         char opCode = args[0].charAt(0);
         double leftVal = Double.parseDouble(args[1]);
@@ -129,13 +132,20 @@ public class Main {
     static double valueFromWord(String word) {
         String [] numberWords = { "zero", "one", "two", "three", "four",
                 "five", "six", "seven", "eight", "nine", "ten" };
-        double value = 0;
+
+        boolean isValueSet = false;
+        double value = 0d;
         for (int index = 0; index < numberWords.length; index++) {
             if (word.equals(numberWords[index])) {
                 value = index;
+                isValueSet = true;
                 break;
             }
         }
+        if (!isValueSet)
+            value = Double.parseDouble(word);
+
+
         return value;
     }
 }
