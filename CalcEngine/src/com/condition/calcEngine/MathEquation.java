@@ -2,27 +2,29 @@ package com.condition.calcEngine;
 
 // import static com.condition.calcEngine.Main.symbolFromOpCode;
 
+import static com.condition.calcEngine.MathOperation.*;
+
 public class MathEquation {
-    double leftVal;
-    double rightVal;
-    char opCode;
+    private double leftVal;
+    private double rightVal;
+    private MathOperation opCode;
     private double result;
     private static int numberOfCalculations;
     private static double sumOfResults;
 
 
-    public MathEquation(char opCode) {
+    public MathEquation(MathOperation opCode) {
         this.opCode = opCode;
     }
 
-    public MathEquation(char opCode, double leftVal, double rightVal) {
+    public MathEquation(MathOperation opCode, double leftVal, double rightVal) {
         this(opCode);
         this.leftVal = leftVal;
         this.rightVal = rightVal;
     }
 
     public char symbolFromOpCode(){
-        char [] opCodes = {'a', 's', 'm', 'd'};
+        MathOperation [] opCodes = {ADD, SUBTRACT, MULTIPLY, DIVIDE};
         char [] symbols = {'+', '-', '*', '/'};
         char symbol = ' ';
         for (int index = 0; index < opCodes.length; index++) {
@@ -47,24 +49,24 @@ public class MathEquation {
         return builder.toString();
     }
     public void setLeftVal(double leftVal) {this.leftVal = leftVal;}
-    double getLeftVal(){return this.leftVal;}
+    public double getLeftVal(){return this.leftVal;}
     public void setRightVal(double rightVal) {this.rightVal = rightVal;}
-    double getRightVal(){ return this.rightVal;}
-    public void setOpCode(char opCode) {this.opCode = opCode;}
-    char getOpCode(){return this.opCode;}
+    public double getRightVal(){ return this.rightVal;}
+    public void setOpCode(MathOperation opCode) {this.opCode = opCode;}
+    public MathOperation getOpCode(){return this.opCode;}
 
     public void execute() {
         switch (opCode) {
-            case 'a':
+            case ADD:
                 result = leftVal + rightVal;
                 break;
-            case 's':
+            case SUBTRACT:
                 result = leftVal - rightVal;
                 break;
-            case 'm':
+            case MULTIPLY:
                 result = leftVal * rightVal;
                 break;
-            case 'd':
+            case DIVIDE:
                 result = rightVal != 0.0d ? leftVal / rightVal : 0.0d;
                 break;
             default:
@@ -97,7 +99,7 @@ public class MathEquation {
     }
 }
 
-/* My Code
+/* My toString() override code.
     public String toString() {
         return leftVal + " " + symbolFromOpCode(opCode) + " " + rightVal + " = " + result;
     } */

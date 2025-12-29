@@ -13,6 +13,7 @@ public class Main {
 
     static void whoIsInCharge(CrewMember member1, CrewMember member2) {
         CrewMember theBoss = member1.getJob().compareTo(member2.getJob()) > 0 ? member1 : member2;
-        System.out.println(theBoss.getName() + " is the Boss");
+        System.out.println(theBoss); // override toString()
+        // System.out.println(theBoss.getName() + " is the Boss"); use  getName() method.
     }
 }

@@ -1,5 +1,6 @@
 package com.condition.calcEngine;
 import java.util.Scanner;
+import static com.condition.calcEngine.MathOperation.*;
 
 public class Main {
 
@@ -19,10 +20,10 @@ public class Main {
 
     static void performCalculation() {
         MathEquation [] equations = new MathEquation[4]; // Math Equation Array of size 4, 4 references of type MathEquation instead of 4 instances
-        equations[0] = new MathEquation('d', 100.0, 50);
-        equations[1] = new MathEquation('a', 25.0d, 92.0d);
-        equations[2] = new MathEquation('s', 225.0d, 17.0d);
-        equations[3] = new MathEquation('m', 11.0d, 3.0d);
+        equations[0] = new MathEquation(DIVIDE, 100.0, 50);
+        equations[1] = new MathEquation(ADD, 25.0d, 92.0d);
+        equations[2] = new MathEquation(SUBTRACT, 225.0d, 17.0d);
+        equations[3] = new MathEquation(MULTIPLY, 11.0d, 3.0d);
 
         for (MathEquation equation : equations) {
             equation.execute();
@@ -37,7 +38,7 @@ public class Main {
         System.out.println("Start using execute overloads");
         System.out.println();
 
-        MathEquation equationOverload = new MathEquation('d');
+        MathEquation equationOverload = new MathEquation(DIVIDE);
         double leftDouble = 9.0d;
         double rightDouble = 4.0d;
         equationOverload.execute(leftDouble, rightDouble);
@@ -58,7 +59,7 @@ public class Main {
     }
 
     private static void performOperation(String[] parts) {
-        char opCode = opCodeFromString(parts[0]);
+        MathOperation opCode = MathOperation.valueOf(parts[0].toUpperCase());
         double leftVal = valueFromWord(parts[1]);
         double rightVal = valueFromWord(parts[2]);
         MathEquation equation = new MathEquation(opCode, leftVal, rightVal);
@@ -66,32 +67,6 @@ public class Main {
         System.out.println(equation);
     }
 
-    private static void displayResult(char opCode, double leftVal, double rightVal, double result) {
-        char symbol = symbolFromOpCode(opCode);
-        StringBuilder builder = new StringBuilder(20);
-        builder.append(leftVal);
-        builder.append(" ");
-        builder.append(symbol);
-        builder.append(" ");
-        builder.append(rightVal);
-        builder.append(" = ");
-        builder.append(result);
-        String output = builder.toString();
-        System.out.println(output);
-    }
-
-    private static char symbolFromOpCode(char opCode) {
-        char [] opCodes = {'a', 's', 'm', 'd'};
-        char [] symbols = {'+', '-', '*', '/'};
-        char symbol = ' ';
-        for (int index = 0; index < opCodes.length; index++) {
-            if (opCode == opCodes[index]) {
-                symbol = symbols[index];
-                break;
-            }
-        }
-        return symbol;
-    }
 
     private static void handleCommandLine(String[] args) {
         char opCode = args[0].charAt(0);
@@ -124,8 +99,9 @@ public class Main {
         return result;
     }
 
-    static char opCodeFromString(String operationName) {
-        char opCode = operationName.charAt(0);
+    static MathOperation opCodeFromString(String operationName) {
+        String opCodeUpper = operationName.toUpperCase();
+        MathOperation opCode = MathOperation.valueOf(opCodeUpper);
         return opCode;
     }
 
