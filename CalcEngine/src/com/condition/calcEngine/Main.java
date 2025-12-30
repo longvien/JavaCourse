@@ -99,12 +99,6 @@ public class Main {
         return result;
     }
 
-    static MathOperation opCodeFromString(String operationName) {
-        String opCodeUpper = operationName.toUpperCase();
-        MathOperation opCode = MathOperation.valueOf(opCodeUpper);
-        return opCode;
-    }
-
     static double valueFromWord(String word) {
         String [] numberWords = { "zero", "one", "two", "three", "four",
                 "five", "six", "seven", "eight", "nine", "ten" };

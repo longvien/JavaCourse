@@ -3,7 +3,7 @@ public class Main {
         int valA = 10;
         Integer valB = 50;
         Integer valC = valA;
-        System.out.println(valB);
+        System.out.println(valC);
 
     }
 }

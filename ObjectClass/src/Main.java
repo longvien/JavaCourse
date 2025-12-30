@@ -9,6 +9,6 @@ public class Main {
         array[4] = 4.5f;
         System.out.println(array[4].getClass());
         for (Object i : array)
-            System.out.println(i);
+            System.out.println(i.getClass());
     }
 }

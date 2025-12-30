@@ -2,8 +2,6 @@ package com.condition.calcEngine;
 
 // import static com.condition.calcEngine.Main.symbolFromOpCode;
 
-import static com.condition.calcEngine.MathOperation.*;
-
 public class MathEquation {
     private double leftVal;
     private double rightVal;
@@ -23,21 +21,9 @@ public class MathEquation {
         this.rightVal = rightVal;
     }
 
-    public char symbolFromOpCode(){
-        MathOperation [] opCodes = {ADD, SUBTRACT, MULTIPLY, DIVIDE};
-        char [] symbols = {'+', '-', '*', '/'};
-        char symbol = ' ';
-        for (int index = 0; index < opCodes.length; index++) {
-            if (opCode == opCodes[index]) {
-                symbol = symbols[index];
-                break;
-            }
-        }
-        return symbol;
-    }
-
+    @Override
     public String toString(){
-        char symbol = symbolFromOpCode();
+        char symbol = opCode.getSymbol();
         StringBuilder builder = new StringBuilder(20);
         builder.append(leftVal);
         builder.append(" ");
