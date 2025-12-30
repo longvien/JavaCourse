@@ -1,4 +1,7 @@
-package com.operation;
+import com.operation.Calculation;
+import com.operation.OperationName;
+import static com.operation.OperationName.*;
+
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
@@ -29,7 +32,7 @@ public class Main {
         String [] parts = oslrv.split(" ");
         double leftNum = Double.parseDouble(parts[0]);
         double rightNum = Double.parseDouble(parts[2]);
-        char opSymbol = parts[1].charAt(0);
+        OperationName opSymbol = toOpName(parts[1]); //problems
         Calculation user = new Calculation(leftNum, rightNum, opSymbol);
         double result = user.calculate();
         System.out.println("The result of " + leftNum + " " + opSymbol + " " + rightNum + " = " + result);
@@ -40,7 +43,7 @@ public class Main {
         System.out.println("Please enter the operation symbol! + - * /");
         Scanner input = new Scanner(System.in);
         String opSymbol1 = input.nextLine();
-        char opSymbol = opSymbol1.charAt(0);
+        OperationName opSymbol = toOpName(opSymbol1); //error here
         System.out.println("Please enter the left number!");
         String leftNum1 = input.nextLine();
         double leftNum = Double.parseDouble(leftNum1);
@@ -52,4 +55,15 @@ public class Main {
         System.out.println("The result of " + leftNum1 + " " + opSymbol1 + " " + rightNum1 + " = " + result);
     }
 
+    protected static OperationName toOpName(String symbol) {
+        String[] opSymbol = {"+", "-", "*", "/", "**", "√"};
+        OperationName[] opNames = {ADD, SUBTRACT, MULTIPLY, DIVIDE, EXPONENT, SQUAREROOT};
+        OperationName value = null;
+        for (int i = 0; i < opSymbol.length; i++) {
+            if(symbol.equals(opSymbol[i])) {
+                value = opNames[i];
+            }
+        }
+    return value;
+    }
 }
