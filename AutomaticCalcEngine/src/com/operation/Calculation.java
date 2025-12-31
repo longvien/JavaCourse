@@ -1,27 +1,31 @@
 package com.operation;
 
-import static com.operation.OperationName.*;
-
 public class Calculation {
     private double leftNum;
     private double rightNum;
-    private OperationName opSymbol;
+    private final OperationName opSymbol;
     private double exponent;
-    private double subscript;
+    private double base;
+    private int index;
+    private double radicand;
     private double result;
 
-
-    public Calculation(double exponent, double subscript) {
-        this.exponent = exponent;
-        this.subscript = subscript;
+    public Calculation(OperationName opSymbol) { this.opSymbol = opSymbol;}
+    public Calculation(OperationName opSymbol, double base, double exponent) {
+        this(opSymbol);
+        this.exponent = exponent;  // base mũ exponent
+        this.base = base;
     }
-
+    public Calculation(OperationName opSymbol, int index, double radicand) {
+        this(opSymbol);
+        this.index = index; // căn bậc index của radicand
+        this.radicand = radicand;
+    }
     public Calculation(double leftNum, double rightNum, OperationName opSymbol){
+        this(opSymbol);
         this.leftNum = leftNum;
         this.rightNum = rightNum;
-        this.opSymbol = opSymbol;
     }
-
 
     public double calculate(){
         switch(opSymbol){
@@ -40,7 +44,11 @@ public class Calculation {
                     System.out.println("Zero Division Error! Default Value: 0!");
                 break;
             case EXPONENT:
-                result = Math.pow(exponent, subscript);
+                result = Math.pow(base, exponent);
+                break;
+            case SQUAREROOT:
+                result = Math.pow(radicand, 1.0 / index);
+                break;
             default:
                 result = 0.0;
                 System.out.println("Invalid Syntax");

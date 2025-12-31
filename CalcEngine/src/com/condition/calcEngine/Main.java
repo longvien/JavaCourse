@@ -3,7 +3,6 @@ import java.util.Scanner;
 import static com.condition.calcEngine.MathOperation.*;
 
 public class Main {
-
     public static void main(String[] args) {
         if (args.length == 0 ) {
             performCalculation();
@@ -12,7 +11,7 @@ public class Main {
             executeInteractively();
         }
         else if (args.length == 3) {
-            handleCommandLine(args);
+            performOperation(args);
         }
         else
             System.out.println("Pls provide an operation code and two numeric numbers ");
@@ -67,38 +66,6 @@ public class Main {
         System.out.println(equation);
     }
 
-
-    private static void handleCommandLine(String[] args) {
-        char opCode = args[0].charAt(0);
-        double leftVal = Double.parseDouble(args[1]);
-        double rightVal = Double.parseDouble(args[2]);
-        double result = execute(opCode, leftVal, rightVal);
-        System.out.println(result);
-    }
-
-    static double execute(char opCode, double leftVal, double rightVal) {
-        double result;
-        switch (opCode) {
-            case 'a':
-                result = leftVal + rightVal;
-                break;
-            case 's':
-                result = leftVal - rightVal;
-                break;
-            case 'm':
-                result = leftVal * rightVal;
-                break;
-            case 'd':
-                result = rightVal != 0.0d ? leftVal / rightVal : 0.0d;
-                break;
-            default:
-                System.out.println("Invalid OPCode: " + opCode);
-                result = 0.0d;
-                break;
-        }
-        return result;
-    }
-
     static double valueFromWord(String word) {
         String [] numberWords = { "zero", "one", "two", "three", "four",
                 "five", "six", "seven", "eight", "nine", "ten" };
@@ -114,8 +81,6 @@ public class Main {
         }
         if (!isValueSet)
             value = Double.parseDouble(word);
-
-
         return value;
     }
 }

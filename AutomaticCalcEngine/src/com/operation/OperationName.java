@@ -5,10 +5,10 @@ public enum OperationName {
     SUBTRACT("-"),
     MULTIPLY("*"),
     DIVIDE("/"),
-    EXPONENT("**"),
+    EXPONENT("^"),
     SQUAREROOT("√");
 
-    private String symbol;
+    private final String symbol;
 
     private OperationName(String symbol){
         this.symbol = symbol;
