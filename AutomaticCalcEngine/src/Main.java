@@ -1,7 +1,6 @@
 import com.operation.Calculation;
 import com.operation.OperationName;
 import static com.operation.OperationName.*;
-import static java.util.EnumSet.range;
 
 import java.util.Scanner;
 public class Main {
@@ -50,35 +49,30 @@ public class Main {
 
         if (opSymbol1.equals("+") || opSymbol1.equals("-") || opSymbol1.equals("*") || opSymbol1.equals("/")) {
             System.out.println("Please enter the left number!");
-            String leftNum1 = input.nextLine();
-            double leftNum = Double.parseDouble(leftNum1);
+            double leftNum = Double.parseDouble(input.nextLine());
             System.out.println("Please enter the right number!");
-            String rightNum1 = input.nextLine();
-            double rightNum = Double.parseDouble(rightNum1);
+            double rightNum = Double.parseDouble(input.nextLine());
             Calculation user = new Calculation(leftNum, rightNum, opSymbol);
             double result = user.calculate();
-            System.out.println("The result of " + leftNum1 + " " + opSymbol1 + " " + rightNum1 + " = " + result); }
+            System.out.println(user); }
 
         else if (opSymbol1.equals("^")) {
             System.out.println("Please enter the base!");
-            String base1 = input.nextLine();
-            double base = Double.parseDouble(base1);
+            double base = Double.parseDouble(input.nextLine());
             System.out.println("Please enter the exponent!");
-            String exponent1 = input.nextLine();
-            double exponent = Double.parseDouble(exponent1);
+            double exponent = Double.parseDouble(input.nextLine());
             Calculation user = new Calculation(opSymbol, base, exponent);
             double result = user.calculate();
             System.out.println(base + " to the power of " + exponent + " is " + result); }
+
         else if (opSymbol1.equals("√")) {
             System.out.println("Please enter the radicand!");
-            String radicand1 = input.nextLine();
-            double radicand = Double.parseDouble(radicand1);
+            double radicand = Double.parseDouble(input.nextLine());
             System.out.println("Please enter the index!");
-            String index1 = input.nextLine();
-            int index = Integer.parseInt(index1);
+            int index = Integer.parseInt(input.nextLine());
             Calculation user = new Calculation(opSymbol, index, radicand);
             double result = user.calculate();
-            System.out.println(index + "th" + " root of " + radicand + " is " + result); }
+            System.out.println(user); }
     }
 
     protected static OperationName toOpName(String symbol) {
@@ -90,6 +84,6 @@ public class Main {
                 value = opNames[i];
             }
         }
-    return value;
+        return value;
     }
 }

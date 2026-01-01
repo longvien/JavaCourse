@@ -1,15 +1,18 @@
 package com.operation;
 
+import static com.operation.OperationName.*;
+
 public class Calculation {
     private double leftNum;
     private double rightNum;
-    private final OperationName opSymbol;
+    private static OperationName opSymbol;
     private double exponent;
     private double base;
     private int index;
     private double radicand;
     private double result;
 
+    public Calculation() {}
     public Calculation(OperationName opSymbol) { this.opSymbol = opSymbol;}
     public Calculation(OperationName opSymbol, double base, double exponent) {
         this(opSymbol);
@@ -27,10 +30,12 @@ public class Calculation {
         this.rightNum = rightNum;
     }
 
+
     public double calculate(){
         switch(opSymbol){
             case ADD:
                 result = leftNum + rightNum;
+                System.out.println(result);
                 break;
             case SUBTRACT:
                 result = leftNum - rightNum;
@@ -56,6 +61,74 @@ public class Calculation {
 
         }
         return result;
+    }
+
+
+    @SuppressWarnings("toString")
+    @Override
+    public String toString(){
+        StringBuilder builder = new StringBuilder(40);
+        switch(opSymbol) {
+            case ADD, SUBTRACT, MULTIPLY, DIVIDE:
+                builder.append("The result of ");
+                builder.append(leftNum);
+                builder.append(" ");
+                builder.append(toSymbol(opSymbol));
+                builder.append(" ");
+                builder.append(rightNum);
+                builder.append(" = ");
+                builder.append(result);
+                break;
+            case EXPONENT:
+                builder.append(base);
+                builder.append(" to the power of ");
+                builder.append(exponent);
+                builder.append(" is ");
+                builder.append(result);
+                break;
+            case SQUAREROOT:
+                builder.append(index);
+                builder.append(ordering(index));
+                builder.append(" root of ");
+                builder.append(radicand);
+                builder.append(" is ");
+                builder.append(result);
+                break;
+            default:
+                builder.append("Operation Symbol Invalid!");
+                break;
+        }
+        return builder.toString();
+    }
+
+    protected static String toSymbol(OperationName symbol) {
+        String[] opSymbol = {"+", "-", "*", "/", "^", "√"};
+        OperationName[] opNames = {ADD, SUBTRACT, MULTIPLY, DIVIDE, EXPONENT, SQUAREROOT};
+        String value = null;
+        for (int i = 0; i < opSymbol.length; i++) {
+            if(symbol.equals(opNames[i])) {
+                value = opSymbol[i];
+            }
+        }
+        return value;
+    }
+
+    protected static String ordering(int num1) {
+        String num = String.valueOf(num1);
+        String digit = String.valueOf(num.charAt(num.length() - 1));
+        String order = null;
+
+        if (num1 < 10 || num1 > 20 ) {
+            if (digit.equals("1"))
+                order = "st";
+            else if (digit.equals("2"))
+                order = "nd";
+            else if (digit.equals("3"))
+                order = "rd"; }
+        else
+            if (digit.equals("1") || digit.equals("2") || digit.equals("3"))
+                order = "th";
+    return order;
     }
 
 }

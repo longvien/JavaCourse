@@ -84,10 +84,4 @@ public class MathEquation {
         return this.result;
     }
 }
-
-/* My toString() override code.
-    public String toString() {
-        return leftVal + " " + symbolFromOpCode(opCode) + " " + rightVal + " = " + result;
-    } */
-
 //author: Long Vien
