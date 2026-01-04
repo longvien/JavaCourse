@@ -87,5 +87,5 @@ public class Main {
         return value;
     }
 
-    protected static void
+
 }
