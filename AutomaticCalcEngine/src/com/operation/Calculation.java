@@ -12,7 +12,6 @@ public class Calculation {
     private double radicand;
     private double result;
 
-    public Calculation() {}
     public Calculation(OperationName opSymbol) { this.opSymbol = opSymbol;}
     public Calculation(OperationName opSymbol, double base, double exponent) {
         this(opSymbol);
@@ -30,8 +29,7 @@ public class Calculation {
         this.rightNum = rightNum;
     }
 
-
-    public double calculate(){
+    public void calculate(){
         switch(opSymbol){
             case ADD:
                 result = leftNum + rightNum;
@@ -51,7 +49,7 @@ public class Calculation {
             case EXPONENT:
                 result = Math.pow(base, exponent);
                 break;
-            case SQUAREROOT:
+            case ROOT:
                 result = Math.pow(radicand, 1.0 / index);
                 break;
             default:
@@ -60,9 +58,7 @@ public class Calculation {
                 break;
 
         }
-        return result;
     }
-
 
     @SuppressWarnings("toString")
     @Override
@@ -73,7 +69,7 @@ public class Calculation {
                 builder.append("The result of ");
                 builder.append(leftNum);
                 builder.append(" ");
-                builder.append(toSymbol(opSymbol));
+                builder.append(opSymbol.getSymbol());
                 builder.append(" ");
                 builder.append(rightNum);
                 builder.append(" = ");
@@ -86,7 +82,7 @@ public class Calculation {
                 builder.append(" is ");
                 builder.append(result);
                 break;
-            case SQUAREROOT:
+            case ROOT:
                 builder.append(index);
                 builder.append(ordering(index));
                 builder.append(" root of ");
@@ -101,23 +97,10 @@ public class Calculation {
         return builder.toString();
     }
 
-    protected static String toSymbol(OperationName symbol) {
-        String[] opSymbol = {"+", "-", "*", "/", "^", "√"};
-        OperationName[] opNames = {ADD, SUBTRACT, MULTIPLY, DIVIDE, EXPONENT, SQUAREROOT};
-        String value = null;
-        for (int i = 0; i < opSymbol.length; i++) {
-            if(symbol.equals(opNames[i])) {
-                value = opSymbol[i];
-            }
-        }
-        return value;
-    }
-
     protected static String ordering(int num1) {
         String num = String.valueOf(num1);
         String digit = String.valueOf(num.charAt(num.length() - 1));
         String order = null;
-
         if (num1 < 10 || num1 > 20 ) {
             if (digit.equals("1"))
                 order = "st";
@@ -129,6 +112,18 @@ public class Calculation {
             if (digit.equals("1") || digit.equals("2") || digit.equals("3"))
                 order = "th";
     return order;
+    }
+
+    public static OperationName toOpName(String symbol) {
+        String[] opSymbol = {"+", "-", "*", "/", "^", "√"};
+        OperationName[] opNames = {ADD, SUBTRACT, MULTIPLY, DIVIDE, EXPONENT, ROOT};
+        OperationName value = null;
+        for (int i = 0; i < opSymbol.length; i++) {
+            if(symbol.equals(opSymbol[i])) {
+                value = opNames[i];
+            }
+        }
+        return value;
     }
 
 }

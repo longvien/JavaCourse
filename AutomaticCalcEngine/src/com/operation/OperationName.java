@@ -6,11 +6,11 @@ public enum OperationName {
     MULTIPLY("*"),
     DIVIDE("/"),
     EXPONENT("^"),
-    SQUAREROOT("√");
+    ROOT("√");
 
     private final String symbol;
 
-    private OperationName(String symbol){
+    OperationName(String symbol){
         this.symbol = symbol;
     }
 
